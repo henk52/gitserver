@@ -1,0 +1,29 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+my $f_szBaseDirectory = "/var/git";
+
+my $szRepoName = shift || die ("You must provide a git name.");
+
+my $f_szNewGitName = "${f_szBaseDirectory}/${szRepoName}";
+
+if ( $f_szNewGitName !~ /\.git$/ ) {
+  $f_szNewGitName .= ".git";
+}
+
+if ( ! -d $f_szNewGitName ) {
+  my $nStatus = system("mkdir $f_szNewGitName");
+  if ( $nStatus == 0 ) {
+    $nStatus = system("cd $f_szNewGitName; git --bare init");
+    if ( $nStatus != 0 ) {
+      system("rmdir $f_szNewGitName");
+    } else {
+      # http://git-scm.com/book/en/Git-on-the-Server-Public-Access
+      # This means that when you push to the server via SSH, Git will run this command to update the files needed for HTTP fetching.
+      system("mv $f_szNewGitName/hooks/post-update.sample $f_szNewGitName/hooks/post-update");
+    }
+  }
+} else {
+ print "!!! $f_szNewGitName already exists\n";
+}

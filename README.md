@@ -1,4 +1,4 @@
-henk52-git-server
+henk52-gitserver
 ===============
 
 
@@ -11,11 +11,11 @@ LIMITATIONS:
 
 Installation:
 # cd /etc/puppet/modules
-# git clone https://github.com/henk52/git-server.git
+# git clone https://github.com/henk52/gitserver.git
 
 
 Usage:
 
 Defalt installation of git-server
-  sudo puppet apply --verbose /etc/puppet/modules/git-server/manifests/install.pp
+  sudo puppet apply --verbose /etc/puppet/modules/gitserver/manifests/install.pp
 
