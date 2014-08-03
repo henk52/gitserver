@@ -51,10 +51,6 @@ package { 'git':
   ensure => installed,
 }
 
-package { 'lighttpd':
-  ensure => installed,
-}
-
 
 user { 'git':
   ensure     => present,
