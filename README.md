@@ -14,8 +14,22 @@ Installation:
 # git clone https://github.com/henk52/gitserver.git
 
 
-Usage:
-
-Defalt installation of git-server
+Default installation of git-server
   sudo puppet apply --verbose /etc/puppet/modules/gitserver/manifests/install.pp
 
+# Usage:
+
+## Creating a repository
+
+1. ssh -l git GITSERVER
+2. newgit alpha
+
+
+## Cloning a repository with write access
+
+* git clone ssh://git@GITSERVER/var/git/alpha.git
+
+
+## Cloning a repository with read-only access
+
+* git clone http://GITSERVER/git/alpha.git
