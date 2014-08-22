@@ -37,7 +37,8 @@
 #
 class gitserver (
   $szGitDirectory = hiera( 'GitDirectory', '/var/git' ),
-  $szWebProcessOwnerName = hiera( 'WebProcessOwner', 'lighttpd' )
+  $szWebProcessOwnerName = hiera( 'WebProcessOwner', 'lighttpd' ),
+  $szWebServerPackage = hiera( 'WebServerPackage', 'lighttpd' )
 ) {
 
 $szModulePath = "/etc/puppet"
@@ -121,21 +122,8 @@ file { "$szGitDirectory":
   group   => "$szWebProcessOwnerName",
   require => [ 
                User[ 'git' ],
-               Package [ 'lighttpd' ],
              ],
 }
-
-
-#file_line { 'add_git_share':
-#  line    => "alias.url += ( \"/git/\" => \"/var/git/\" )",
-#  path    => '/etc/lighttpd/lighttpd.conf',
-#  require => [
-#               File [ '/etc/lighttpd/lighttpd.conf' ],
-#               User [ 'git' ],
-#               Package [ 'lighttpd' ],
-#             ],
-#  notify  => Service [ 'lighttpd' ],
-#}
 
 
 }
