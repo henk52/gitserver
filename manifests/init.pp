@@ -58,7 +58,7 @@ user { 'git':
   home       => '/home/git',
   managehome => true,
   shell      => '/usr/bin/git-shell',
-  require    => Package [ 'git' ],
+  require    => Package[ 'git' ],
 }
 
 
@@ -77,7 +77,7 @@ file { '/home/git/git-shell-commands/help':
   #source  => 'modules/gitserver/help',
   #source  => 'puppet:///modules/gitserver/help',
   #source  => 'puppet:///modules/gitserver/files/help',
-  require  => File [ '/home/git/git-shell-commands' ],
+  require  => File[ '/home/git/git-shell-commands' ],
 }
 
 file { '/home/git/git-shell-commands/list':
@@ -86,7 +86,7 @@ file { '/home/git/git-shell-commands/list':
   group   => 'git',
   mode    => '555',
   source  => "$szModulePath/modules/gitserver/files/list",
-  require  => File [ '/home/git/git-shell-commands' ],
+  require  => File[ '/home/git/git-shell-commands' ],
 }
 
 file { '/home/git/git-shell-commands/newgit':
@@ -95,7 +95,7 @@ file { '/home/git/git-shell-commands/newgit':
   group    => 'git',
   mode     => '555',
   source   => "$szModulePath/modules/gitserver/files/newgit",
-  require  => File [ '/home/git/git-shell-commands' ],
+  require  => File[ '/home/git/git-shell-commands' ],
 }
 
 
@@ -111,7 +111,7 @@ file { '/home/git/.ssh/authorized_keys':
   owner    => 'git',
   group    => 'git',
   mode     => '700',
-  require  => File [ '/home/git/.ssh' ],
+  require  => File[ '/home/git/.ssh' ],
 }
 
 # The directory where the repositories are to be stored.
